@@ -1,6 +1,6 @@
 ///usr/bin/env jbang "$0" "$@" ; exit $?
 // //DEPS <dependency1> <dependency2>
-// JAVA 17
+//JAVA 17
 package io.aghasemi.jtry;
 
 import static java.lang.System.*;
