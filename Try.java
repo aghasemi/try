@@ -9,8 +9,6 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
 
-
-
 public class Try {
 
     private interface ExceptionFreeFunction<T> {
