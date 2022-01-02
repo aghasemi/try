@@ -2,7 +2,7 @@
 // //DEPS <dependency1> <dependency2>
 //JAVA 17
 //GAV com.github.aghasemi:try
-package io.aghasemi.jtry;
+package com.github.aghasemi.jry;
 
 import static java.lang.System.*;
 
