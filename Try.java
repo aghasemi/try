@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class Try {
 
-    private interface ExceptionFreeFunction<T> {
+    public interface ExceptionFreeFunction<T> {
         public T run() throws Exception;
     }
 
