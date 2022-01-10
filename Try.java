@@ -7,7 +7,6 @@ import static java.lang.System.*;
 
 import java.net.URL;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicReference;
 
 
 public class Try {
@@ -50,7 +49,7 @@ public class Try {
     public static void main(String... args) {
         out.println("Hello World");
 
-        var x =  doTry( () -> new URL("http://google.ch"));
+        var x =  get( () -> new URL("http://google.ch"));
         System.out.println(x);
     }
 }
