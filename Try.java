@@ -5,6 +5,7 @@ package com.github.aghasemi.try4j; // The IDE will complain about this. Ignore i
 
 import static java.lang.System.*;
 
+import java.io.PrintStream;
 import java.net.URL;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -28,11 +29,13 @@ public class Try<T> {
     {
         try {
             T result = (T) f.get();
+
             if (emptyIfNull && result==null) 
                 return Optional.empty(); 
             else 
                 return emptinessChecker.apply(result) ? Optional.empty() :  Optional.of(result);
         } catch (Exception e) {
+            exceptionHandler.accept(e);
             return Optional.empty();
         }
     }
@@ -101,5 +104,7 @@ public class Try<T> {
 
         var x =  Try.init().emptyIfNull(true).runAndGet( () -> new URL("http://google.ch"));
         System.out.println(x);
+
+        
     }
 }
