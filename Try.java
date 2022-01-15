@@ -21,49 +21,51 @@ public class Try<T> {
         public void run() throws Exception;
     }
 
-    private Consumer<Exception> exceptionHandler = (e) -> { return; } ;
-    private Function<T, Boolean> emptinessChecker = (t) -> false ;
-    private boolean emptyIfNull = false;
+    public static class TryBuilder<V> {
+        private TryBuilder() {}
+        private Consumer<Exception> exceptionHandler = (e) -> { return; } ;
+        private Function<V, Boolean> emptinessChecker = (t) -> false ;
+        private boolean emptyIfNull = false;
 
-    public Optional<T> runAndGet(ExceptionFreeFunction f)
-    {
-        try {
-            T result = (T) f.get();
+        public Optional<V> get(ExceptionFreeFunction f)
+        {
+            try {
+                V result = (V) f.get();
 
-            if (emptyIfNull && result==null) 
-                return Optional.empty(); 
-            else 
-                return emptinessChecker.apply(result) ? Optional.empty() :  Optional.of(result);
-        } catch (Exception e) {
-            exceptionHandler.accept(e);
-            return Optional.empty();
+                if (emptyIfNull && result==null) 
+                    return Optional.empty(); 
+                else 
+                    return emptinessChecker.apply(result) ? Optional.empty() :  Optional.of(result);
+            } catch (Exception e) {
+                exceptionHandler.accept(e);
+                return Optional.empty();
+            }
         }
+
+        public TryBuilder emptyIfNull(boolean _emptyIfNull)
+        {
+            this.emptyIfNull = _emptyIfNull;
+            return this;
+        }
+
+        public TryBuilder emptyIf(Function _emptinessChecker)
+        {
+            this.emptinessChecker = _emptinessChecker;
+            return this;
+        }
+
+        public TryBuilder onException(Consumer<Exception> _handler)
+        {
+            this.exceptionHandler = _handler;
+            return this;
+        }
+
     }
 
-
-    private Try() {}
-
-    public static Try init() {
-        return new Try();
+    public static TryBuilder init() {
+            return new TryBuilder();
     }
 
-    public Try emptyIfNull(boolean _emptyIfNull)
-    {
-        this.emptyIfNull = _emptyIfNull;
-        return this;
-    }
-
-    public Try emptyIf(Function _emptinessChecker)
-    {
-        this.emptinessChecker = _emptinessChecker;
-        return this;
-    }
-
-    public Try onException(Consumer<Exception> _handler)
-    {
-        this.exceptionHandler = _handler;
-        return this;
-    }
 
     public static<U> Optional<U> get(ExceptionFreeFunction f, boolean emptyIfNull)
     {
@@ -102,7 +104,7 @@ public class Try<T> {
         out.println("Hello World");
         
 
-        var x =  Try.init().emptyIfNull(true).runAndGet( () -> new URL("http://google.ch"));
+        var x =  Try.init().emptyIfNull(true).get( () -> new URL("http://google.ch"));
         System.out.println(x);
 
         
