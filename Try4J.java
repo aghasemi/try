@@ -104,7 +104,7 @@ public class Try4J<T> {
         
 
         var x =  Try4J.initTry().emptyIfNull(true).Try( () -> new URL("http://google.ch"));
-        var y = Try4J.Try(() -> new URL("****"));
+        var y = Try4J.Try(() -> new URL("http://google.ch"));
         System.out.println(x);
 
         
