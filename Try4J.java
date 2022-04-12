@@ -1,4 +1,5 @@
 ///usr/bin/env jbang "$0" "$@" ; exit $?
+//JAVA 11
 //GAV com.github.aghasemi:try4j
 package com.github.aghasemi.try4j; // The IDE will complain about this. Ignore it.
 
