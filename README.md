@@ -9,7 +9,7 @@ A very basic mimicking of Scala's Try construct. It also allows  "avoiding" chec
 ```java
 Optional<URL> y = Try4J.Try(() -> new URL("http://google.ch"));
 ```
-`y` is `Optional.empty()` if an aexception happens during the computation (here for example if the URL does not have the right format). Otherwise, it contains the result of the computation.
+`y` is `Optional.empty()` if an exception happens during the computation (here for example if the URL does not have the right format). Otherwise, it contains the result of the computation.
 
 You can also replace the lambda with something that does not return any value.
 
