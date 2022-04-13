@@ -97,7 +97,15 @@ public class Try4J<T> {
     }
 
     
-
+	 //See https://stackoverflow.com/questions/148828/how-to-emulate-c-sharp-as-operator-in-java
+	 
+	public static <T> Optional<T> as(Class<T> targetClass, Object o)
+	{
+	    if(targetClass.isInstance(o)){
+	        return Optional.of(targetClass.cast(o));
+	    }
+	    return Optional.empty();
+	}
     
 
     public static void main(String... args) {
